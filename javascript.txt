@@ -1,0 +1,25 @@
+mycall=()=>new Promise((resolve , reject)=> {
+  if(true){
+    resolve("user is connected")
+  }else{
+    reject("user is not connected")
+  }
+})
+
+mycall().then(result => console.log(result)).catch(err => console.log(err))
+
+**********************************************************************
+
+mynewcall = async() =>{
+  if(true){
+    console.log("user needs to connect")
+  }
+}
+
+parentcall = async() =>{
+  return await mynewcall()
+}
+
+(async() => {
+  (await parentcall())
+})();

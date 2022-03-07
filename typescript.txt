@@ -1,0 +1,53 @@
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  //console.log(user.fname);
+   
+
+ (5 > 3) ?? console.log('true') 
+
+ const main =  (person : string , enroll:number , date : Date) => {
+ 
+ //console.log(`hello my name is ${person} and my ennrollment no is ${enroll} and todays date is ${date.toLocaleDateString()}`)
+ 
+ }
+ const myuser = {
+     lname : "amandeep SINGH mehra",
+     sname:Date()
+ } 
+
+
+ const myset = new Set([1,2,4,4,4,4,4,5,6,7])
+console.log(myset.size)
+console.log([...myset].includes(8))
+
+ main( myuser.lname , 2563, new Date());
+
+
+var date=myuser.sname 
+///console.log(myuser.lname)
+//console.log(date.toString())
+
+
+const iset = ["a","b","c","d","d"]
+console.log("print the value of iset - >" ,iset)
+iset.map((item,i)=>{console.log("item")})
+
+
+ 
+
+
+let names = ['anand' ,  'rahul' , 'deepak','singh',"a"] as const
+
+//console.log('->' , names)
+
+names.map((items,index)=>{
+   // console.log("" + (index + 1) +" is " + items)
+})
+
+//console.log(names.includes("singh"))
+ 
+// interceptor
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++backup till 01/12/2021 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+

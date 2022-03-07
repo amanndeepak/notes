@@ -1,0 +1,109 @@
+++++++++++++++++++Axios+++++++++++++++++++++++++++
+
+
+const axios = require('axios');
+const { response } = require('express');
+
+
+axios.get("https://www.google.com")
+.then((response)=>{
+    console.log("access  " + JSON.stringify(response))
+})
+.catch((err)=>{
+    console.log("denied "  + err)
+})  
+
+
++++++++++++++++++++++Controller++++++++++++++++++++++
+
+var express = require("express");
+var sql = require("mssql");
+var app = express();
+var Sequelize = require("sequelize");
+const window = require("window");
+new Sequelize("Customdata", "sa", "Chetu@123", {
+  host: "localhost",
+  dialect: "mssql",
+  dialectOptions: {
+    encrypt: true,
+    trustServerCertificate: true,
+    instanceName: "MSSQL2019",
+  },
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000,
+  },
+  port: 61652,
+});
+
+const save = (params) => {
+  //     console.log("Json data format"+JSON.stringify(params))
+  //    sequelize.query(`INSERT INTO CelopayData (fname) values ('${params.first_name}')`,
+  //         // sequelize.query(`INSERT INTO CelopayData (Name,Value,Type) values ('${params[i].name}','${"tok_sandbox_"+encodedString}','${params[i].type}')`,
+  //              { bind: ['active'], type: sequelize.QueryTypes.SELECT }
+  //          ).then(function (projects) {
+  //             console.log(projects)
+  //          })
+  console.log("hello" + params);
+};
+
+module.exports = {
+  save,
+};
+
+
+
+++++++++++++++++++++++++++++++node mailer+++++++++++++++++++++++++++++++
+
+const nodemailer = require("nodemailer");
+const cron = require("node-cron");
+
+const save = (params) => {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "devonwarth@gmail.com",
+      pass: "Devon@123",
+    },
+  });
+ 
+
+  var mailOptions = {
+    to: "devon@yopmail.com",
+    from: "helloaman@gmail.com",
+    subject: "this is test mail for client code",
+    text: "welcome to my emails",
+    html: `
+        <table>
+        <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Enrollment</th>
+        </tr>
+        <tr>
+        <td>${params.first_name}</td>
+        <td>${params.second_name}</td>
+        <td>${params.last_name}</td>
+        <td>${params.email}</td>
+        <td>${params.enrollment}</td>
+        </tr>
+        </table>
+        `,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
+
+module.exports = {
+  save,
+};
